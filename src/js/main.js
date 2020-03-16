@@ -14,35 +14,37 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+
+
 const addGlass = document.querySelector(".counter__button--add--js");
 const removeGlass = document.querySelector(".counter__button--remove--js");
 const glassCounter = document.querySelector(".counter__number--js");
-let count = 0;
 const water = document.querySelector(".water");
 const date = new Date().toISOString().slice(0, 10);
 const history = document.querySelector(".history__value--js");
 const historyEntry = document.createElement("li");
 
-if (localStorage.length > 0) {
-  addGlass.addEventListener("click", (e) => {
-    count += 1;
-    localStorage.setItem(date, JSON.stringify(count));
-    glassCounter.innerHTML = count;
-  });
 
-  removeGlass.addEventListener("click", (e) => {
-    if (count >= 1) {
-      count -= 1;
-      localStorage.setItem(date, JSON.stringify(count));
-      glassCounter.innerHTML = count;
-    };
-  });
+if (!localStorage.getItem(date)) {
+  localStorage.setItem(date, 0);
+  glassCounter.innerHTML = "0";
 }
 else {
-  count = 0;
+  glassCounter.innerHTML = localStorage.getItem(date);
 }
 
+addGlass.addEventListener("click", (e) => {
+  localStorage.setItem(date, parseInt(localStorage.getItem(date)) + 1)
+  glassCounter.innerHTML = localStorage.getItem(date);
+})
 
+removeGlass.addEventListener("click", (e) => {
+  const count = parseInt(localStorage.getItem(date));
+  if (count > 0) {
+    localStorage.setItem(date, localStorage.getItem(date) - 1)
+    glassCounter.innerHTML = localStorage.getItem(date);
+  }
+});
 
 for (let i = 0; i < localStorage.length; i++) {
   let historyEntryData = `${localStorage.key(i)}: ${localStorage.getItem(localStorage.key(i))} szklanek.`;
@@ -50,8 +52,9 @@ for (let i = 0; i < localStorage.length; i++) {
   historyEntry.innerHTML = historyEntryData;
   history.appendChild(historyEntry);
   historyEntry.style.cssText = "color:#fff; padding-top:14px; font-size:14px;)";
-
 }
+
+
 
 
 
