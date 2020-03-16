@@ -1,6 +1,7 @@
 @import "_normalize";
 @import "_variables";
-$blue: #3767ad;
+$background-blue: #3767ad;
+$water-blue: #2196f3;
 
 html {
   box-sizing: border-box;
@@ -13,7 +14,7 @@ html {
 }
 
 body {
-  background-color: $blue;
+  background-color: $background-blue;
   min-height: 100vh;
   font-family: Roboto;
 }
