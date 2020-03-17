@@ -45,8 +45,16 @@ body {
   &__button--remove {
     font-size: 14px;
     margin-top: 40px;
+    margin-bottom: 48px;
     color: #f5e5e7;
     background: none;
     border: none;
   }
+}
+
+.water-sip {
+  transform: scaley(0.9);
+  transform-origin: bottom;
+  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0.8;
 }

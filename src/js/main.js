@@ -36,6 +36,7 @@ else {
 addGlass.addEventListener("click", (e) => {
   localStorage.setItem(date, parseInt(localStorage.getItem(date)) + 1)
   glassCounter.innerHTML = localStorage.getItem(date);
+  water.classList.add("water-sip");
 })
 
 removeGlass.addEventListener("click", (e) => {
@@ -46,12 +47,16 @@ removeGlass.addEventListener("click", (e) => {
   }
 });
 
+addGlass.addEventListener("mouseout", (e) => {
+  water.classList.remove("water-sip");
+ });
+
 for (let i = 0; i < localStorage.length; i++) {
   let historyEntryData = `${localStorage.key(i)}: ${localStorage.getItem(localStorage.key(i))} szklanek.`;
   const historyEntry = document.createElement("li");
   historyEntry.innerHTML = historyEntryData;
   history.appendChild(historyEntry);
-  historyEntry.style.cssText = "color:#fff; padding-top:14px; font-size:14px;)";
+  historyEntry.style.cssText = "color:#fff; padding-top:14px; font-size:14px;";
 }
 
 
